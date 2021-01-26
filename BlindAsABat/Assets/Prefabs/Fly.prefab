@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 9141788195469766132}
   - component: {fileID: 9141788195469766138}
   - component: {fileID: 9141788195469766137}
+  - component: {fileID: 7138013520479135946}
   m_Layer: 0
-  m_Name: Insect
+  m_Name: Fly
   m_TagString: Insect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -121,3 +122,17 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &7138013520479135946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141788195469766136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 961ee7201187ee04b900dbbcd528b59e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateInterval: 0.8
+  movingDistance: 50
