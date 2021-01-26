@@ -29,6 +29,16 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private float rotationAmount = 50f;
 
+    private float top = 0f;
+    private float right = 0f;
+    private float left = 0f;
+    private float bottom = 0f;
+
+    private void Start()
+    {
+        FindPlayerBounds();
+    }
+
     private void Update()
     {
         if(movementType != MovementType.ONPRESS)
@@ -90,10 +100,9 @@ public class Movement : MonoBehaviour
                     }
                 }
                 break;
-        
         }
-        
-        
+
+        CheckPlayerBounds();
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
@@ -124,5 +133,40 @@ public class Movement : MonoBehaviour
 
         transform.Rotate(0f, 0f, rotationAmount * -horizontalInput * Time.deltaTime);
         isRotating = false;
+    }
+
+    void FindPlayerBounds()
+    {
+        top = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)).y;
+        right = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)).x;
+        left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)).x;
+        bottom = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)).y;
+    }
+
+    void CheckPlayerBounds()
+    {
+        // Top
+        if(transform.position.y > top - 0.5f)
+        {
+            transform.position = new Vector3(transform.position.x, top - 0.5f, transform.position.z);
+        }
+
+        // Right
+        if(transform.position.x > right - 0.5f)
+        {
+            transform.position = new Vector3(right - 0.5f, transform.position.y, transform.position.z);
+        }
+        
+        // Left
+        if(transform.position.x < left + 0.5f)
+        {
+            transform.position = new Vector3(left + 0.5f, transform.position.y, transform.position.z);
+        }
+
+        // Bottom
+        if(transform.position.y < bottom + 0.5f)
+        {
+            transform.position = new Vector3(transform.position.x, bottom + 0.5f, transform.position.z);
+        }
     }
 }
