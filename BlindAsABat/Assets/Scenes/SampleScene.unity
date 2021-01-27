@@ -5646,6 +5646,9 @@ MonoBehaviour:
   movingDistance: 1000
   rotationAmount: 25
   echoWave: {fileID: 2396435028641751354, guid: 0a6be3e022b0b5f4b9b50b4617fba28b, type: 3}
+  numberOfWaves: 4
+  burstInterval: 3
+  waveInterval: 0.4
 --- !u!212 &810476287
 SpriteRenderer:
   m_ObjectHideFlags: 0

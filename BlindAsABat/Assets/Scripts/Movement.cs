@@ -37,6 +37,15 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private GameObject echoWave = null;
 
+    [SerializeField]
+    private int numberOfWaves = 4;
+
+    [SerializeField]
+    private float burstInterval = 4f;
+
+    [SerializeField]
+    private float waveInterval = 0.5f;
+
     private void Start()
     {
         FindPlayerBounds();
@@ -113,14 +122,12 @@ public class Movement : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(4.0f);
-            CreateEchoWave();
-            yield return new WaitForSeconds(updateInterval);
-            CreateEchoWave();
-            yield return new WaitForSeconds(updateInterval);
-            CreateEchoWave();
-            yield return new WaitForSeconds(updateInterval);
-            CreateEchoWave();
+            yield return new WaitForSeconds(burstInterval);
+            for (int i = 0; i < numberOfWaves; i++)
+            {
+                CreateEchoWave();
+                yield return new WaitForSeconds(waveInterval);
+            }
         }
     }
 
