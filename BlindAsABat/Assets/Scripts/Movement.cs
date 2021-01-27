@@ -155,7 +155,7 @@ public class Movement : MonoBehaviour
             yield return new WaitForSeconds(updateInterval);
         }
 
-        transform.Rotate(0f, 0f, rotationAmount * -horizontalInput * Time.deltaTime);
+        transform.Rotate(0f, 0f, rotationAmount * -horizontalInput);
         isRotating = false;
     }
 
