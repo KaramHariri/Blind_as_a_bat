@@ -34,9 +34,13 @@ public class Movement : MonoBehaviour
     private float left = 0f;
     private float bottom = 0f;
 
+    [SerializeField]
+    private GameObject echoWave = null;
+
     private void Start()
     {
         FindPlayerBounds();
+        StartCoroutine(Echo());
     }
 
     private void Update()
@@ -103,6 +107,26 @@ public class Movement : MonoBehaviour
         }
 
         CheckPlayerBounds();
+    }
+
+    IEnumerator Echo()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(4.0f);
+            CreateEchoWave();
+            yield return new WaitForSeconds(updateInterval);
+            CreateEchoWave();
+            yield return new WaitForSeconds(updateInterval);
+            CreateEchoWave();
+            yield return new WaitForSeconds(updateInterval);
+            CreateEchoWave();
+        }
+    }
+
+    void CreateEchoWave()
+    {
+        GameObject gameObject = GameObject.Instantiate(echoWave, transform.position, transform.rotation);
     }
 
     private IEnumerator MovePlayer(Vector3 direction)
