@@ -5643,7 +5643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementType: 2
   updateInterval: 0.3
-  movingDistance: 10
+  movingDistance: 1000
   rotationAmount: 25
   echoWave: {fileID: 2396435028641751354, guid: 0a6be3e022b0b5f4b9b50b4617fba28b, type: 3}
 --- !u!212 &810476287
