@@ -22,8 +22,16 @@ public class AnimalSpawner : MonoBehaviour
     public float fliesSpawnTimer = 0.0f;
     public float owlsSpawnTimer = 0.0f;
 
+    //Camera stuff for spawn
+    private float top = 0f;
+    private float right = 0f;
+    private float left = 0f;
+    private float bottom = 0f;
+
     void Start()
     {
+        FindSpawnBounds();
+
         maxAmountOfFliesAlive = 3;
         maxAmountOfOwlsAlive = 1;
     }
@@ -75,8 +83,8 @@ public class AnimalSpawner : MonoBehaviour
 
     void SpawnFly()
     {
-        float xPos = Random.Range(-spawnWidth, spawnWidth);
-        float yPos = Random.Range(-spawnHeight, spawnHeight);
+        float xPos = Random.Range(bottom + 0.5f, top - 0.5f);
+        float yPos = Random.Range(left + 0.5f, right - 0.5f);
 
         Instantiate(FlyPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
         fliesCurrentlyAlive++;
@@ -85,8 +93,8 @@ public class AnimalSpawner : MonoBehaviour
 
     void SpawnOwl()
     {
-        float xPos = Random.Range(-spawnWidth, spawnWidth);
-        float yPos = Random.Range(-spawnHeight, spawnHeight);
+        float xPos = Random.Range(bottom +0.5f,top -0.5f);
+        float yPos = Random.Range(left + 0.5f , right - 0.5f );
 
         Instantiate(OwlPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
         owlsCurrentlyAlive++;
@@ -96,5 +104,13 @@ public class AnimalSpawner : MonoBehaviour
     public void FlyEaten()
     {
         fliesCurrentlyAlive--;
+    }
+
+    void FindSpawnBounds()
+    {
+        top = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)).y;
+        right = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)).x;
+        left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)).x;
+        bottom = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)).y;
     }
 }
