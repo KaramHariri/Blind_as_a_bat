@@ -39,6 +39,11 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        PlaySound("Ambience");
+    }
+
     public void PlaySound(string name)
     {
         Audio aud = Array.Find(soundFX, Audio => Audio.name == name);
@@ -53,6 +58,7 @@ public class SoundManager : MonoBehaviour
 
         if(!aud.aS.isPlaying)
         {
+            Debug.Log("Playing sound " + name);
             aud.aS.Play();
         }
     }

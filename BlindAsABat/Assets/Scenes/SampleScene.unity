@@ -5768,6 +5768,7 @@ MonoBehaviour:
   textScoreAmount: {fileID: 1548797011}
   spawner: {fileID: 30316287}
   textHealthAmount: {fileID: 383637279}
+  soundManager: {fileID: 0}
 --- !u!1 &1429509946
 GameObject:
   m_ObjectHideFlags: 0
@@ -11092,7 +11093,7 @@ MonoBehaviour:
   - name: Ambience
     clip: {fileID: 8300000, guid: 4e648f11478c60045a05581648ddf33d, type: 3}
     volume: 1
-    pitch: 0
+    pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 1
@@ -11100,17 +11101,17 @@ MonoBehaviour:
     aS: {fileID: 0}
   - name: Owl
     clip: {fileID: 8300000, guid: 9f6e0aa93fe9f684e88065db7e235ee9, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
     playOnAwake: 0
     aS: {fileID: 0}
-  - name: 
+  - name: Eat
     clip: {fileID: 8300000, guid: 7f0bb5703929e2441a12d840c66a8224, type: 3}
-    volume: 0
-    pitch: 0
+    volume: 1
+    pitch: 1
     randomVolume: 0
     randomPitch: 0
     loop: 0
