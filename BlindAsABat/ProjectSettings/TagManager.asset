@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Insect
+  - Echo
   layers:
   - Default
   - TransparentFX

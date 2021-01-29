@@ -16,7 +16,6 @@ public class EchoWave : MonoBehaviour
     private float scaleModifier = 0.5f;
     private SpriteRenderer spriteRenderer = null;
 
-
     private void Awake()
     {
         transform.localScale = Vector3.zero;

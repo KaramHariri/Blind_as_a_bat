@@ -20,8 +20,15 @@ public class FlyMovement : MonoBehaviour
     [Range(0.3f, 1.5f)]
     [SerializeField]
     private float moveDistanceRadius = 1f;
+
+    [SerializeField]
+    private float maxVisibleDuration = 0.7f;
+    private float visibleDuration = 0.0f;
+    private SpriteRenderer spriteRenderer = null;
+
     void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
         FindFlyBounds();
         StartCoroutine(MoveFly());
     }
@@ -29,6 +36,20 @@ public class FlyMovement : MonoBehaviour
     void Update()
     {
         CheckFlyBounds();
+
+        if(visibleDuration > 0.0f)
+        {
+            Color spriteColor = spriteRenderer.color;
+            spriteColor.a = 1f;
+            spriteRenderer.color = spriteColor;
+            visibleDuration -= Time.deltaTime;
+        }
+        else
+        {
+            Color spriteColor = spriteRenderer.color;
+            spriteColor.a = 0f;
+            spriteRenderer.color = spriteColor;
+        }
     }
 
     void FindFlyBounds()
@@ -97,6 +118,16 @@ public class FlyMovement : MonoBehaviour
             yield return new WaitForSeconds(updateInterval);
 
             transform.position = destination;
+        }
+    }
+
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Echo"))
+        {
+            visibleDuration = maxVisibleDuration;
         }
     }
 }
