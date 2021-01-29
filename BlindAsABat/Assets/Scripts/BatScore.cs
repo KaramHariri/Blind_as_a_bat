@@ -20,6 +20,7 @@ public class BatScore : MonoBehaviour
     private float damageTickFrequency = 3.0f;
     private float timeSinceLastDamage = 0.0f;
     private int hungerDamage = 1;
+    private int owlDamage = 50;
 
     SoundManager soundManager = null;
 
@@ -34,19 +35,19 @@ public class BatScore : MonoBehaviour
     {
         timePlayed += Time.deltaTime;
         timeSinceLastFed += Time.deltaTime;
-        
+
         //Difficulty setting
-        if(timePlayed > 200f)
+        if (timePlayed > 200f)
         {
             timeBeforeHunger = 5.0f;
             damageTickFrequency = 3.0f;
         }
-        else if(timePlayed > 100.0f)
+        else if (timePlayed > 100.0f)
         {
             timeBeforeHunger = 10.0f;
             damageTickFrequency = 3.0f;
         }
-        else if(timePlayed > 50.0f)
+        else if (timePlayed > 50.0f)
         {
             timeBeforeHunger = 13.5f;
             damageTickFrequency = 3.0f;
@@ -57,24 +58,24 @@ public class BatScore : MonoBehaviour
             damageTickFrequency = 3.0f;
         }
 
-        if(timeSinceLastFed > timeBeforeHunger)
+        if (timeSinceLastFed > timeBeforeHunger)
         {
             timeSinceLastDamage += Time.deltaTime;
 
-            if(timeSinceLastDamage > damageTickFrequency)
+            if (timeSinceLastDamage > damageTickFrequency)
             {
                 timeSinceLastDamage = 0.0f;
 
                 health -= hungerDamage;
-                if(health < 0)
-                {
-                    health = 0;
-                    Debug.Log("Death :(");
-                }
-                textHealthAmount.text = ":  " + health.ToString();
             }
         }
 
+        if (health < 0)
+        {
+            health = 0;
+            Debug.Log("Death :(");
+        }
+        textHealthAmount.text = ":  " + health.ToString();
     }
 
     private void OnTriggerEnter2D( Collider2D collision )
@@ -94,6 +95,11 @@ public class BatScore : MonoBehaviour
             spawner.FlyEaten();
             soundManager.PlaySound("Eat");
             Destroy(collision.gameObject);
+        }
+
+        if(collision.gameObject.CompareTag("Owl"))
+        {
+            health -= owlDamage;
         }
     }
 

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Insect
   - Echo
+  - Owl
+  - Bat
   layers:
   - Default
   - TransparentFX

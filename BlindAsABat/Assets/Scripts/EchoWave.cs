@@ -54,6 +54,11 @@ public class EchoWave : MonoBehaviour
             Color alpha = spriteRenderer.color;
             alpha.a -= scaleModifier * Time.deltaTime;
             spriteRenderer.color = alpha;
+
+            if(alpha.a <= 0f)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

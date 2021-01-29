@@ -4,8 +4,6 @@ using UnityEngine;
 
 namespace BLINDED_AM_ME
 {
-
-
     public class OwlMovement : MonoBehaviour
     {
         public Path_Comp path_comp;
@@ -17,22 +15,34 @@ namespace BLINDED_AM_ME
         public float moveTimer = 0f;
         private float distancePerMoveIntervall = 0.03f;
 
+        GameObject parent;
+
+        [SerializeField]
+        private float maxVisibleDuration = 1.5f;
+        private float visibleDuration = 0.0f;
+        private SpriteRenderer spriteRenderer = null;
 
         private void Start()
         {
+            spriteRenderer = GetComponent<SpriteRenderer>();
             Path_Point axis = path_comp.GetPathPoint(0);
             transform.position = axis.point;
+            parent = transform.parent.gameObject;
         }
 
-        // Update is called once per frame
         void LateUpdate()
         {
+            if(distanceTravelled > 1f)
+            {
+                Destroy(parent);
+            }
             moveTimer += Time.deltaTime;
             if(moveTimer > moveIntervall)
             {
                 moveTimer = 0;
 
                 distanceTravelled = distanceTravelled + distancePerMoveIntervall;
+                Mathf.Clamp(distanceTravelled, 0f, 1f);
                 // This made it based on the paritcle speed
                 float dist = distanceTravelled;
 
@@ -42,7 +52,32 @@ namespace BLINDED_AM_ME
                 transform.position = axis.point;
             }
 
+            if (visibleDuration > 0.0f)
+            {
+                Color spriteColor = spriteRenderer.color;
+                spriteColor.a = 1f;
+                spriteRenderer.color = spriteColor;
+                visibleDuration -= Time.deltaTime;
+            }
+            else
+            {
+                Color spriteColor = spriteRenderer.color;
+                spriteColor.a = 0f;
+                spriteRenderer.color = spriteColor;
+            }
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Echo"))
+            {
+                visibleDuration = maxVisibleDuration;
+            }
+
+            if(collision.CompareTag("Bat"))
+            {
+                Destroy(parent);
+            }
         }
     }
-
 }

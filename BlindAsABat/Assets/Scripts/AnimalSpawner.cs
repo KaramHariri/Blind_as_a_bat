@@ -28,6 +28,13 @@ public class AnimalSpawner : MonoBehaviour
     private float left = 0f;
     private float bottom = 0f;
 
+    SoundManager soundManager = null;
+
+    private void Awake()
+    {
+        soundManager = FindObjectOfType<SoundManager>();
+    }
+
     void Start()
     {
         FindSpawnBounds();
@@ -93,12 +100,11 @@ public class AnimalSpawner : MonoBehaviour
 
     void SpawnOwl()
     {
-        float xPos = Random.Range(bottom +0.5f,top -0.5f);
-        float yPos = Random.Range(left + 0.5f , right - 0.5f );
-
-        Instantiate(OwlPrefab, new Vector3(xPos, yPos, 0), Quaternion.identity);
+        Instantiate(OwlPrefab, Vector3.zero, Quaternion.identity);
         owlsCurrentlyAlive++;
         owlsSpawnTimer = 0.0f;
+
+        soundManager.PlaySound("Owl");
     }
 
     public void FlyEaten()
