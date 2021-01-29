@@ -56,8 +56,8 @@ public class Movement : MonoBehaviour
     {
         if(movementType != MovementType.ONPRESS)
         {
-            verticalInput = Input.GetAxis("Vertical");
-            horizontalInput = Input.GetAxis("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+            horizontalInput = Input.GetAxisRaw("Horizontal");
         }
 
         switch (movementType)
@@ -141,7 +141,8 @@ public class Movement : MonoBehaviour
         isMoving = true;
 
         originPos = transform.position;
-        targetPos = originPos + (direction * movingDistance * verticalInput * Time.deltaTime);
+        targetPos = originPos + (direction * movingDistance * verticalInput);
+
 
         if(movementType == MovementType.INTERVALED)
         {
@@ -162,7 +163,7 @@ public class Movement : MonoBehaviour
             yield return new WaitForSeconds(updateInterval);
         }
 
-        transform.Rotate(0f, 0f, rotationAmount * -horizontalInput);
+        transform.Rotate(0f, 0f, rotationAmount * -horizontalInput );
         isRotating = false;
     }
 

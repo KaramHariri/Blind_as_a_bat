@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   updateInterval: 0
-  movingDistance: 5
+  movingDistance: 10
 --- !u!61 &5785466429713124301
 BoxCollider2D:
   m_ObjectHideFlags: 0
