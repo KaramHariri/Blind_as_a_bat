@@ -30,6 +30,13 @@ public class AnimalSpawner : MonoBehaviour
 
     SoundManager soundManager = null;
 
+    [SerializeField]
+    private float difficultyEasy = 20f;
+    [SerializeField]
+    private float difficultyMedium = 60f;
+    [SerializeField]
+    private float difficultyHard = 120f;
+
     private void Awake()
     {
         soundManager = FindObjectOfType<SoundManager>();
@@ -47,17 +54,17 @@ public class AnimalSpawner : MonoBehaviour
     {
         timePlayed += Time.deltaTime;
 
-        if(timePlayed > 200.0f)
+        if(timePlayed > difficultyHard)
         {
             maxAmountOfFliesAlive = 1;
             maxAmountOfOwlsAlive = 3;
         }
-        else if(timePlayed >= 100.0f)
+        else if(timePlayed >= difficultyMedium)
         {
             maxAmountOfFliesAlive = 2;
             maxAmountOfOwlsAlive = 2;
         }
-        else if (timePlayed >= 50.0f)
+        else if (timePlayed >= difficultyEasy)
         {
             maxAmountOfFliesAlive = 3;
             maxAmountOfOwlsAlive = 1;
@@ -118,5 +125,10 @@ public class AnimalSpawner : MonoBehaviour
         right = Camera.main.ViewportToWorldPoint(new Vector3(1, 1, Camera.main.nearClipPlane)).x;
         left = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)).x;
         bottom = Camera.main.ViewportToWorldPoint(new Vector3(0, 0, Camera.main.nearClipPlane)).y;
+    }
+
+    public void OwlDied()
+    {
+        owlsCurrentlyAlive--;
     }
 }

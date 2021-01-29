@@ -19,13 +19,26 @@ public class BatScore : MonoBehaviour
 
     private float damageTickFrequency = 3.0f;
     private float timeSinceLastDamage = 0.0f;
+    [SerializeField]
     private int hungerDamage = 1;
+    [SerializeField]
     private int owlDamage = 50;
+
+    [SerializeField]
+    private float difficultyEasy = 30f;
+    [SerializeField]
+    private float difficultyMedium = 60f;
+    [SerializeField]
+    private float difficultyHard = 120f;
 
     SoundManager soundManager = null;
 
+    public GameObject deathScreen = null;
+    public TMP_Text highScoreText;
+
     private void Start()
     {
+        deathScreen.SetActive(false);
         textScoreAmount.text = ":  " + score.ToString();
         textHealthAmount.text = ":  " + health.ToString();
         soundManager = FindObjectOfType<SoundManager>();
@@ -37,17 +50,17 @@ public class BatScore : MonoBehaviour
         timeSinceLastFed += Time.deltaTime;
 
         //Difficulty setting
-        if (timePlayed > 200f)
+        if (timePlayed > difficultyHard)
         {
             timeBeforeHunger = 5.0f;
             damageTickFrequency = 3.0f;
         }
-        else if (timePlayed > 100.0f)
+        else if (timePlayed > difficultyMedium)
         {
             timeBeforeHunger = 10.0f;
             damageTickFrequency = 3.0f;
         }
-        else if (timePlayed > 50.0f)
+        else if (timePlayed > difficultyEasy)
         {
             timeBeforeHunger = 13.5f;
             damageTickFrequency = 3.0f;
@@ -74,6 +87,8 @@ public class BatScore : MonoBehaviour
         {
             health = 0;
             Debug.Log("Death :(");
+            deathScreen.SetActive(true);
+            highScoreText.text = "YOU DIED ! \n HighScore : " + score.ToString();
         }
         textHealthAmount.text = ":  " + health.ToString();
     }

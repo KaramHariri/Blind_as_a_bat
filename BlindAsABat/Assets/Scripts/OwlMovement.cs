@@ -22,8 +22,14 @@ namespace BLINDED_AM_ME
         private float visibleDuration = 0.0f;
         private SpriteRenderer spriteRenderer = null;
 
+        private AnimalSpawner animalSpawner = null;
+
+        private SoundManager soundManager = null;
+
         private void Start()
         {
+            soundManager = FindObjectOfType<SoundManager>();
+            animalSpawner = GameObject.Find("AnimalSpawner").GetComponent<AnimalSpawner>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             Path_Point axis = path_comp.GetPathPoint(0);
             transform.position = axis.point;
@@ -35,7 +41,10 @@ namespace BLINDED_AM_ME
             if(distanceTravelled > 1f)
             {
                 Destroy(parent);
+                animalSpawner.OwlDied();
+                soundManager.StopSound("Owl");
             }
+
             moveTimer += Time.deltaTime;
             if(moveTimer > moveIntervall)
             {
@@ -77,6 +86,8 @@ namespace BLINDED_AM_ME
             if(collision.CompareTag("Bat"))
             {
                 Destroy(parent);
+                animalSpawner.OwlDied();
+                soundManager.StopSound("Owl");
             }
         }
     }
