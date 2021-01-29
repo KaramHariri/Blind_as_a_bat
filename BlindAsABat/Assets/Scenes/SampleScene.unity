@@ -5648,8 +5648,8 @@ MonoBehaviour:
   movingDistance: 1.5
   rotationAmount: 25
   echoWave: {fileID: 2396435028641751354, guid: 0a6be3e022b0b5f4b9b50b4617fba28b, type: 3}
-  numberOfWaves: 4
-  burstInterval: 3
+  numberOfWaves: 3
+  burstInterval: 2
   waveInterval: 0.4
 --- !u!212 &810476287
 SpriteRenderer:
@@ -11088,7 +11088,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a6b275fbc4b73469831928b867c7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  soundFX: []
+  soundFX:
+  - name: Ambience
+    clip: {fileID: 8300000, guid: 4e648f11478c60045a05581648ddf33d, type: 3}
+    volume: 1
+    pitch: 0
+    randomVolume: 0
+    randomPitch: 0
+    loop: 1
+    playOnAwake: 1
+    aS: {fileID: 0}
+  - name: Owl
+    clip: {fileID: 8300000, guid: 9f6e0aa93fe9f684e88065db7e235ee9, type: 3}
+    volume: 0
+    pitch: 0
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+    playOnAwake: 0
+    aS: {fileID: 0}
+  - name: 
+    clip: {fileID: 8300000, guid: 7f0bb5703929e2441a12d840c66a8224, type: 3}
+    volume: 0
+    pitch: 0
+    randomVolume: 0
+    randomPitch: 0
+    loop: 0
+    playOnAwake: 0
+    aS: {fileID: 0}
 --- !u!4 &2068360858
 Transform:
   m_ObjectHideFlags: 0
