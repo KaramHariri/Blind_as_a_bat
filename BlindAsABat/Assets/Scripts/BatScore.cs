@@ -23,8 +23,8 @@ public class BatScore : MonoBehaviour
 
     private void Start()
     {
-        textScoreAmount.text = score.ToString();
-        textHealthAmount.text = health.ToString();
+        textScoreAmount.text = ":  " + score.ToString();
+        textHealthAmount.text = ":  " + health.ToString();
     }
 
     private void Update()
@@ -68,7 +68,7 @@ public class BatScore : MonoBehaviour
                     health = 0;
                     Debug.Log("Death :(");
                 }
-                textHealthAmount.text = health.ToString();
+                textHealthAmount.text = ":  " + health.ToString();
             }
         }
 
@@ -79,13 +79,13 @@ public class BatScore : MonoBehaviour
         if(collision.gameObject.CompareTag("Insect"))
         {
             score += 10;
-            textScoreAmount.text = score.ToString();
+            textScoreAmount.text = ":  " + score.ToString();
 
             health += healthRegainedByFly;
             if (health > 100)
                 health = 100;
 
-            textHealthAmount.text = health.ToString();
+            textHealthAmount.text = ":  " + health.ToString();
             timeSinceLastFed = 0f;
 
             spawner.FlyEaten();
