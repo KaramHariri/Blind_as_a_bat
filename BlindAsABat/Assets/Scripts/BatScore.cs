@@ -21,17 +21,13 @@ public class BatScore : MonoBehaviour
     private float timeSinceLastDamage = 0.0f;
     private int hungerDamage = 1;
 
-    [SerializeField]
     SoundManager soundManager = null;
-
-    AudioSource aS;
 
     private void Start()
     {
         textScoreAmount.text = ":  " + score.ToString();
         textHealthAmount.text = ":  " + health.ToString();
         soundManager = FindObjectOfType<SoundManager>();
-        aS = GetComponent<AudioSource>();
     }
 
     private void Update()

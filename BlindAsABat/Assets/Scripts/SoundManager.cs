@@ -58,7 +58,6 @@ public class SoundManager : MonoBehaviour
 
         if(!aud.aS.isPlaying)
         {
-            Debug.Log("Playing sound " + name);
             aud.aS.Play();
         }
     }
